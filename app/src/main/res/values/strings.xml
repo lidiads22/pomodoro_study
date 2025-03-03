@@ -2,7 +2,7 @@
     <string name="app_name">pomodoro_study</string>
     <string name="email_phone_input">Email or Phone</string>
     <string name="password_input">Password</string>
-    <string name="create_account_button">Create and account</string>
+    <string name="create_account_button">Create an account</string> <!-- Corrected typo -->
     <string name="login_input">Login</string>
     <string name="forgot_Password_text">Forgot password?</string>
     <string name="profile_nav">Profile</string>
@@ -11,5 +11,4 @@
     <string name="settings_nav">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>
