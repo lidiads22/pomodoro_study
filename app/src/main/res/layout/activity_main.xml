@@ -74,7 +74,7 @@
             android:layout_marginBottom="68dp"
             android:background="@drawable/button_background"
             android:text="@string/create_account_button"
-            android:textColor="#2A2A2A" />
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/forgotPasswordID"

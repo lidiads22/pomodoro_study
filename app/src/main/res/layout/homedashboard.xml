@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/background_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/login_input"
+        android:scaleType="fitXY"
+        android:src="@drawable/empty_background" />
+
+    <TextView
+        android:id="@+id/ready_textID"
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="851dp"
+        android:fontFamily="monospace"
+        android:text="@string/ready_Text"
+        android:textColor="@color/white"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/flashcard_textID"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="232dp"
+        android:layout_marginBottom="542dp"
+        android:fontFamily="monospace"
+        android:text="@string/flashcards_Text"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_1HR_ID"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="129dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="746dp"
+        android:text="@string/one_hr_Text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/button_3hr_id"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="226dp"
+        android:layout_marginBottom="641dp"
+        android:text="@string/three_hr_Text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/button_4hr_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="239dp"
+        android:layout_marginTop="231dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="639dp"
+        android:text="@string/four_hr_Text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/button_2hr_id"
+        android:layout_width="wrap_content"
+        android:layout_height="78dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="238dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="746dp"
+        android:text="@string/two_hr_Text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+    <FrameLayout
+        android:id="@+id/flFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="881dp"
+        android:layout_marginBottom="-4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@layout/navigation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView" />
+
+    <ImageView
+        android:id="@+id/redFlashcardID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="364dp"
+        app:srcCompat="@drawable/red_flashcard" />
+
+    <ImageView
+        android:id="@+id/blueFlashcardID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="431dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="453dp"
+        app:srcCompat="@drawable/blueflashcard" />
+
+    <ImageView
+        android:id="@+id/purpleFlashcardID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="610dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="274dp"
+        app:srcCompat="@drawable/purpleflashcard" />
+
+    <ImageView
+        android:id="@+id/greenFlashcardID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="704dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="180dp"
+        app:srcCompat="@drawable/greenflashcard" />
+
+    <TextView
+        android:id="@+id/cs_textView"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginBottom="491dp"
+        android:fontFamily="monospace"
+        android:text="@string/cs_FC_text" />
+
+    <TextView
+        android:id="@+id/bus_textView"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="531dp"
+        android:layout_marginEnd="214dp"
+        android:layout_marginBottom="402dp"
+        android:fontFamily="monospace"
+        android:text="@string/b_FC_text" />
+
+    <TextView
+        android:id="@+id/bio_textView"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="623dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="310dp"
+        android:fontFamily="monospace"
+        android:text="@string/bio_FC_text" />
+
+    <TextView
+        android:id="@+id/an_textView"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="715dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginBottom="218dp"
+        android:fontFamily="monospace"
+        android:text="@string/an_FC_text" />
+
+    <TextView
+        android:id="@+id/cardNum1_textView"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="313dp"
+        android:fontFamily="monospace"
+        android:text="@string/cardNUm_text" />
+
+    <TextView
+        android:id="@+id/cardNum3_textView"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="532dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="401dp"
+        android:fontFamily="monospace"
+        android:text="@string/cardNUm_text" />
+
+    <TextView
+        android:id="@+id/cardNum2_textView"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="491dp"
+        android:fontFamily="monospace"
+        android:text="@string/cardNUm_text" />
+
+    <TextView
+        android:id="@+id/cardNum4_textView"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="259dp"
+        android:layout_marginTop="714dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="219dp"
+        android:fontFamily="monospace"
+        android:text="@string/cardNUm_text" />
+
+</RelativeLayout>
