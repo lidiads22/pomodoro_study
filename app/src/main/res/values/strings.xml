@@ -27,4 +27,6 @@
     <string name="bio_FC_text">Biology</string>
     <string name="an_FC_text">Anatomy</string>
     <string name="cardNUm_text">15 cards</string>
+    <string name="question_text">Question</string>
+    <string name="answer_text">Answer</string>
 </resources>
