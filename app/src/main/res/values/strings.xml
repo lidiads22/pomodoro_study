@@ -5,10 +5,28 @@
     <string name="create_account_button">Create an account</string> <!-- Corrected typo -->
     <string name="login_input">Login</string>
     <string name="forgot_Password_text">Forgot password?</string>
-    <string name="profile_nav">Profile</string>
+    <string name="pomodoro_nav">Pomodoro</string>
     <string name="home_nav">Home</string>
+    <string name="task_nav">Tasks</string>
     <string name="or_text">or</string>
     <string name="settings_nav">Settings</string>
+    <!-- Dashboard text -->
+    <string name="ready_Text">Ready,Set,Focus!</string>
+    <string name="flashcards_Text">Flashcards</string>
+    <string name="one_hr_Text">1 hr</string>
+    <string name="two_hr_Text">2 hr</string>
+    <string name="three_hr_Text">3 hr</string>
+    <string name="four_hr_Text">4 hr</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="focus_text">Focus</string>
+    <string name="break_text">Break</string>
+    <!-- Flashcards text -->
+    <string name="cs_FC_text">Computer Science</string>
+    <string name="b_FC_text">Business</string>
+    <string name="bio_FC_text">Biology</string>
+    <string name="an_FC_text">Anatomy</string>
+    <string name="cardNUm_text">15 cards</string>
+    <string name="question_text">Question</string>
+    <string name="answer_text">Answer</string>
 </resources>
