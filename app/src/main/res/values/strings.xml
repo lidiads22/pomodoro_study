@@ -21,6 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="focus_text">Focus</string>
     <string name="break_text">Break</string>
+    <string name="reset_text">Reset</string>
     <!-- Flashcards text -->
     <string name="cs_FC_text">Computer Science</string>
     <string name="b_FC_text">Business</string>
