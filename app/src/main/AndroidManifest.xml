@@ -16,7 +16,7 @@
 
         <!-- Set HomeDashboard as the launcher activity -->
         <activity
-            android:name=".HomeDashboard"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
 
         <!-- MainActivity (If still used, else you can remove this block) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeDashboard"
             android:exported="true" />
     </application>
 </manifest>
