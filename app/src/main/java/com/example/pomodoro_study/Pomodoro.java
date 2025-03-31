@@ -65,11 +65,16 @@ public class Pomodoro extends AppCompatActivity {
             }.start();
         }
 
-        private String formatTime(long millis) {
-            long minutes = (millis / 1000) / 60;
-            long seconds = (millis / 1000) % 60;
+    private String formatTime(long millis) {
+        long hours = (millis / 1000) / 3600;  // Convert milliseconds to hours
+        long minutes = ((millis / 1000) % 3600) / 60;  // Remaining minutes
+        long seconds = (millis / 1000) % 60;  // Remaining seconds
+        if (hours > 0) {
+            return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
+        } else {
             return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         }
+    }
 
         @Override
         protected void onDestroy() {

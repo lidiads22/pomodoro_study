@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/focus_buttonID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="187dp"
+        android:layout_height="54dp"
         android:layout_marginTop="232dp"
         android:layout_marginEnd="8dp"
         android:text="@string/focus_text"
@@ -35,19 +35,21 @@
 
     <Button
         android:id="@+id/break_buttonID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
         android:text="@string/break_text"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@id/focus_buttonID"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/focus_buttonID"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/focus_buttonID"
+        app:layout_constraintTop_toTopOf="@id/focus_buttonID" />
+
 
     <TextView
         android:id="@+id/timerID"
-        android:layout_width="292dp"
-        android:layout_height="241dp"
+        android:layout_width="385dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/timer_background"
         android:fontFamily="monospace"
         android:gravity="center"
@@ -58,20 +60,18 @@
         android:shadowRadius="2"
         android:text="00:00"
         android:textColor="@color/white"
-        android:textSize="72sp"
+        android:textSize="68sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/focus_buttonID"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/focus_buttonID" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startButtonID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginBottom="204dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toStartOf="@id/pauseButtonID"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginBottom="204dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startButtonID"
