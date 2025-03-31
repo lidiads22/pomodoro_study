@@ -1,9 +1,12 @@
 package com.example.pomodoro_study;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -80,9 +83,32 @@ public class ProjectDataBaseHelper extends SQLiteOpenHelper {
      * Crud operations
      *  Read, implement methods to query flashcards(category)
      *  Create an arraylist of categories ... like computer science first
+     *
+     *  method will query SQLite database to retrieve all unique categories
+     *  from the flashcards table and return them in an ArrayList<String>.
      */
+    @SuppressLint("Range")
     public ArrayList<String> getCategories(){
-        return null;
+        //Create arraylist categories
+        ArrayList<String> categories = new ArrayList<>();
+        String selectQuery = "SELECT DISTINCT CATEGORY FROM flashcards";
+        // Open the sql db with this -> getReadableDatabase()
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()){
+            do{
+                //Extracting category and adding to the list
+                categories.add(cursor.getString(cursor.getColumnIndex("category")));
+                // Print if the arraylist has been populated with logcat
+                // To log you need to add a TAG and MSG
+                Log.d("DatabaseDebug", "Category added:" + categories.size());
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // Print total number of categories fetched
+        Log.d("DataDebug","Total number of categories:" + categories.size());
+        return categories;
     }
 
 
