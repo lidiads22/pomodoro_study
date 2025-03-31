@@ -17,7 +17,7 @@
     <string name="two_hr_Text">2 hr</string>
     <string name="three_hr_Text">3 hr</string>
     <string name="four_hr_Text">4 hr</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Pomodoro Timer text-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="focus_text">Focus</string>
     <string name="break_text">Break</string>
@@ -30,4 +30,11 @@
     <string name="cardNUm_text">15 cards</string>
     <string name="question_text">Question</string>
     <string name="answer_text">Answer</string>
+    <!-- Create task text -->
+    <string name="createTASK_text">Create New Task</string>
+    <string name="taskNAME_text">Name</string>
+    <string name="date_text">Date</string>
+    <string name="enterTask_text">Enter Task Name</string>
+    <string name="selectDate_text">Select Date</string>
+    <string name="startTime_text">Start Time</string>
 </resources>
