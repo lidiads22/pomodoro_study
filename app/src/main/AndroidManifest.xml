@@ -29,7 +29,6 @@
             android:name=".Pomodoro"
             android:exported="false" />
 
-        <!-- MainActivity (If still used, else you can remove this block) -->
         <activity
             android:name=".MainActivity"
             android:exported="true" />

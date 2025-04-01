@@ -36,5 +36,10 @@
     <string name="date_text">Date</string>
     <string name="enterTask_text">Enter Task Name</string>
     <string name="selectDate_text">Select Date</string>
-    <string name="startTime_text">Start Time</string>
+    <string name="startTime_text">Start to Start</string>
+    <string name="endTime_text">End Time</string>
+    <string name="selectEnd_text">Select end time</string>
+    <string name="repeat_text">Repeat</string>
+    <string name="weekdays_text">Weekdays</string>
+    <string name="createButton_text">Create Task</string>
 </resources>
