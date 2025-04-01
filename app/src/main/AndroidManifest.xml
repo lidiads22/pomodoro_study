@@ -16,7 +16,7 @@
 
         <!-- Set HomeDashboard as the launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeDashboard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,11 +26,11 @@
 
         <!-- Pomodoro Activity -->
         <activity
-            android:name=".Pomodoro"
+            android:name=".MainActivity"
             android:exported="false" />
 
         <activity
-            android:name=".HomeDashboard"
+            android:name=".Pomodoro"
             android:exported="true" />
     </application>
 </manifest>
