@@ -40,6 +40,22 @@
     <string name="endTime_text">End Time</string>
     <string name="selectEnd_text">Select end time</string>
     <string name="repeat_text">Repeat</string>
-    <string name="weekdays_text">Weekdays</string>
     <string name="createButton_text">Create Task</string>
+    <!-- Forgot Password -->
+    <string name="forgotPass_text">Forgot your password?</string>
+    <string name="passInstruction_text">Enter your registered email below to receive password reset instructions</string>
+    <string name="resetPass_text">Reset Password</string>
+    <string name="w_text">Weekdays</string>
+    <string name="email_text">Email Address</string>
+    <string name="back_text">Back to login</string>
+    <string name="join_us_text">Join us and transform your productivity!</string>
+    <string name="full_name_text">Name</string>
+    <string name="password_text">Password</string>
+    <string name="con_password_text">Confirm Password</string>
+    <string name="i_agree_to_the_terms_and_privacy_text">I agree to the Terms and Privacy</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="have_an_account_sign_in_text">Have an account? Sign In</string>
+    <string name="lets_get_Text">Lets get you signed in!</string>
+    <string name="text_background">Log in and tap into focused study sessions. Let’s make every minute count!</string>
+    <string name="weekday_text">Weekdays</string>
 </resources>

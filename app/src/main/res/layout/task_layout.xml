@@ -50,6 +50,8 @@
             android:layout_height="50dp"
             android:background="@drawable/input_background"
             android:hint="@string/enterTask_text"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -71,6 +73,8 @@
             android:clickable="true"
             android:focusable="true"
             android:hint="@string/selectDate_text"
+            android:importantForAutofill="no"
+            android:inputType="date"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -92,6 +96,8 @@
             android:clickable="true"
             android:focusable="true"
             android:hint="@string/startTime_text"
+            android:importantForAutofill="no"
+            android:inputType="time"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -113,6 +119,8 @@
             android:clickable="true"
             android:focusable="true"
             android:hint="@string/selectEnd_text"
+            android:importantForAutofill="no"
+            android:inputType="time"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -141,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/weekdays_text"
+                android:text="@string/weekday_text"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
