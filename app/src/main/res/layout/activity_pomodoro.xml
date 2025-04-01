@@ -58,7 +58,7 @@
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="2"
-        android:text="00:00"
+        android:text="@string/_00_00_time"
         android:textColor="@color/white"
         android:textSize="68sp"
         android:textStyle="bold"
@@ -76,7 +76,8 @@
         app:layout_constraintEnd_toStartOf="@id/pauseButtonID"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/play_circle" />
+        app:srcCompat="@drawable/play_circle"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pauseButtonID"
@@ -87,7 +88,8 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startButtonID"
-        app:srcCompat="@drawable/pause_circle" />
+        app:srcCompat="@drawable/pause_circle"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -98,6 +100,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

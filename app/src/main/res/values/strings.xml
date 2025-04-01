@@ -58,4 +58,5 @@
     <string name="lets_get_Text">Lets get you signed in!</string>
     <string name="text_background">Log in and tap into focused study sessions. Let’s make every minute count!</string>
     <string name="weekday_text">Weekdays</string>
+    <string name="_00_00_time">00:00</string>
 </resources>
