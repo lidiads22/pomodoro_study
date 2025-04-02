@@ -111,7 +111,6 @@ public class ProjectDataBaseHelper extends SQLiteOpenHelper {
         return categories;
     }
 
-
     public ArrayList<Flashcard> getFlashcardByCategory(String category){
         return null;
     }

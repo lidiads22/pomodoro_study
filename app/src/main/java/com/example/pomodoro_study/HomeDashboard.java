@@ -1,5 +1,6 @@
 package com.example.pomodoro_study;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,33 +25,58 @@ public class HomeDashboard  extends AppCompatActivity {
 
     // 4 category textview
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.homedashboard);
-    // mAuth=FirebaseAuth.getInstance();
-    // initialized objects
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.homedashboard);
+        // mAuth=FirebaseAuth.getInstance();
+        // initialized objects
 
-    // Hour Buttons
-    oneHourButton = findViewById(R.id.button_1HR_ID);
-    twoHourButton = findViewById(R.id.button_2hr_id);
-    threeHourButton = findViewById(R.id.button_3hr_id);
-    fourHourButton = findViewById(R.id.button_4hr_id);
-    // Flashcards Imageview
-    flashcardButton1 = findViewById(R.id.blueFlashcardID);
-    flashcardButton2 = findViewById(R.id.redFlashcardID);
-    flashcardButton3 = findViewById(R.id.purpleFlashcardID);
-    flashcardButton4 = findViewById(R.id.greenFlashcardID);
+        // Hour Buttons
+        oneHourButton = findViewById(R.id.button_1HR_ID);
+        twoHourButton = findViewById(R.id.button_2hr_id);
+        threeHourButton = findViewById(R.id.button_3hr_id);
+        fourHourButton = findViewById(R.id.button_4hr_id);
+        // Flashcards Imageview
+        flashcardButton1 = findViewById(R.id.blueFlashcardID);
+        flashcardButton2 = findViewById(R.id.redFlashcardID);
+        flashcardButton3 = findViewById(R.id.purpleFlashcardID);
 
 
-//    textView = findViewById(R.id.registerNow);
-//    textView.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            // for the register textview
-//            Intent intent = new Intent(getApplicationContext(),register.class);
-//            startActivity(intent);
-//            finish();
-//        }
-    };
+        oneHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeDashboard.this, Pomodoro.class);
+                intent.putExtra("TIME_DURATION", 60); // Pass 60 minutes
+                startActivity(intent);
+            }
+        });
+
+        twoHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeDashboard.this, Pomodoro.class);
+                intent.putExtra("TIME_DURATION", 120); // Pass 120 minutes
+                startActivity(intent);
+            }
+        });
+
+        threeHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeDashboard.this, Pomodoro.class);
+                intent.putExtra("TIME_DURATION", 180); // Pass 180 minutes
+                startActivity(intent);
+            }
+        });
+
+        fourHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeDashboard.this, Pomodoro.class);
+                intent.putExtra("TIME_DURATION", 240); // Pass 180 minutes
+                startActivity(intent);
+            }
+        });
+    }
 }

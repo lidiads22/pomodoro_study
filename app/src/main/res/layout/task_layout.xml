@@ -6,18 +6,21 @@
     android:background="@drawable/task_background">
 
     <!-- Header Section -->
-    <TextView
-        android:id="@+id/tv_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CREATE A NEW TASK"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
 
     <!-- White Card for Input Fields -->
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="69dp"
+        android:fontFamily="monospace"
+        android:text="@string/createTASK_text"
+        android:textColor="@android:color/white"
+        android:textSize="28sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="672dp"
@@ -37,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Name"
+            android:text="@string/taskNAME_text"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -46,7 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/input_background"
-            android:hint="Enter task name"
+            android:hint="@string/enterTask_text"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -56,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Date"
+            android:text="@string/date_text"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -66,8 +71,10 @@
             android:layout_height="50dp"
             android:background="@drawable/input_background"
             android:clickable="true"
-            android:focusable="false"
-            android:hint="Select date"
+            android:focusable="true"
+            android:hint="@string/selectDate_text"
+            android:importantForAutofill="no"
+            android:inputType="date"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -77,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Start Time"
+            android:text="@string/startTime_text"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -87,8 +94,10 @@
             android:layout_height="50dp"
             android:background="@drawable/input_background"
             android:clickable="true"
-            android:focusable="false"
-            android:hint="Select start time"
+            android:focusable="true"
+            android:hint="@string/startTime_text"
+            android:importantForAutofill="no"
+            android:inputType="time"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -98,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="End Time"
+            android:text="@string/endTime_text"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -108,8 +117,10 @@
             android:layout_height="50dp"
             android:background="@drawable/input_background"
             android:clickable="true"
-            android:focusable="false"
-            android:hint="Select end time"
+            android:focusable="true"
+            android:hint="@string/selectEnd_text"
+            android:importantForAutofill="no"
+            android:inputType="time"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -128,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Repeat"
+                android:text="@string/repeat_text"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -138,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Weekdays >"
+                android:text="@string/weekday_text"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -150,8 +161,8 @@
             android:layout_height="74dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/teal_700"
-            android:text="Create Task"
+            android:backgroundTint="@color/purple_500"
+            android:text="@string/createButton_text"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
