@@ -7,9 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 
@@ -111,9 +109,42 @@ public class ProjectDataBaseHelper extends SQLiteOpenHelper {
         return categories;
     }
 
+    @SuppressLint("Range")
     public ArrayList<Flashcard> getFlashcardByCategory(String category){
-        return null;
+        ArrayList<Flashcard> flashcards = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+    String[] projection = {
+            "id",  // Assuming you have an 'id' column
+            "category",
+            "question",
+            "answer"
+    };
+        String selection = "category = ?";
+        String[] selectionArgs = { category };
+
+        Cursor cursor = db.query(
+                "flashcards",   // The table to query
+                projection,     // The columns to return
+                selection,      // The columns for the WHERE clause
+                selectionArgs,  // The values for the WHERE clause
+                null,           // Don't group the rows
+                null,           // Don't filter by row groups
+                null            // The sort order
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                Flashcard flashcard = new Flashcard();
+                flashcard.category = cursor.getString(cursor.getColumnIndex("category"));
+                flashcard.question = cursor.getString(cursor.getColumnIndex("question"));
+                flashcard.answer = cursor.getString(cursor.getColumnIndex("answer"));
+                flashcards.add(flashcard);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return flashcards;
     }
-
-
 }

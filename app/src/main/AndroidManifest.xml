@@ -32,5 +32,10 @@
         <activity
             android:name=".Pomodoro"
             android:exported="true" />
+
+        <activity android:name=".FlashcardActivity">
+            <!-- Intent-filter if needed -->
+        </activity>
+
     </application>
 </manifest>
