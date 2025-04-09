@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_signup">
@@ -54,6 +55,7 @@
 
                 <!-- Full Name Input -->
                 <EditText
+                    android:id="@+id/nameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -66,6 +68,7 @@
 
                 <!-- Email Address Input -->
                 <EditText
+                    android:id="@+id/emailInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -78,6 +81,7 @@
 
                 <!-- Password Input -->
                 <EditText
+                    android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -90,6 +94,7 @@
 
                 <!-- Retype Password Input -->
                 <EditText
+                    android:id="@+id/confirmPasswordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -102,6 +107,7 @@
 
                 <!-- Terms and Privacy Checkbox -->
                 <CheckBox
+                    android:id="@+id/termsCheckbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -109,6 +115,7 @@
 
                 <!-- Sign Up Button -->
                 <Button
+                    android:id="@+id/signUpButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -119,6 +126,7 @@
 
                 <!-- Sign In Link -->
                 <TextView
+                    android:id="@+id/signInLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
