@@ -28,7 +28,6 @@
         <activity
             android:name=".HomeDashboard"
             android:exported="false" />
-
         <activity
             android:name=".Pomodoro"
             android:exported="true" />
