@@ -1,150 +1,134 @@
 package com.example.pomodoro_study;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.util.Log;
-import androidx.annotation.Nullable;
 import java.util.ArrayList;
-
 
 public class ProjectDataBaseHelper extends SQLiteOpenHelper {
 
-    public static class Flashcard{
+    // For flashcard Activity ... define flashcard
+    // Define Flashcard as a static class to be used across the app
+    public static class Flashcard {
         public String category;
         public String question;
         public String answer;
-    }
 
-    // Corrected the constructor by adding the missing parameters and curly brace.
-    public ProjectDataBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        public Flashcard(String category, String question, String answer) {
+            this.category = category;
+            this.question = question;
+            this.answer = answer;
+        }
+    }
+    private static final String DATABASE_NAME = "Flashcards.db";
+    private static final int DATABASE_VERSION = 1;
+
+    private SQLiteDatabase db;
+
+    // SQL statements for creating and deleting tables
+    private static final String SQL_CREATE_ENTRIES =
+            "CREATE TABLE " + FlashcardTable.TABLE_NAME + " (" +
+                    FlashcardTable._ID + " INTEGER PRIMARY KEY," +
+                    FlashcardTable.COLUMN_CATEGORY + " TEXT," +
+                    FlashcardTable.COLUMN_QUESTION + " TEXT," +
+                    FlashcardTable.COLUMN_ANSWER + " TEXT)";
+
+
+
+    private static final String SQL_DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + FlashcardTable.TABLE_NAME;
+
+    // Constructor
+    public ProjectDataBaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Add the SQL statement to create your tables
-        String CREATE_FLASHCARD_TABLE = "CREATE TABLE flashcards (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "category TEXT," +
-                "question TEXT," +
-                "answer TEXT " +
-                ")";
-
-        db.execSQL(CREATE_FLASHCARD_TABLE);
-
-        // Insert flashcard data into the flashcards table is being called (:
-        insertFlashcards(db);
+        db.execSQL(SQL_CREATE_ENTRIES);
+        // Insert initial data
+        insertFlashcard(db, "Computer Science", "What is the boiling point of water?", "100°C");
+        insertFlashcard(db, "Biology", "What is the formula for the area of a circle?", "πr²");
+        insertFlashcard(db, "Business", "What is the boiling point of water?", "100°C");
+        insertFlashcard(db, "Anatomy", "What is the formula for the area of a circle?", "πr²");
     }
 
-    // This method is the array of flashcard data
-    private void insertFlashcards(SQLiteDatabase db) {
-        // Array of flashcard data
-        Object[][] flashcards = {
-                {"Computer Science", "What is a function in programming?", "A function is a block of organized, reusable code that is used to perform a single, related action."},
-                {"Computer Science", "What does HTML stand for?", "Hyper Text Markup Language."},
-                {"Law", "What is the principle of \"Double Jeopardy\"?", "A legal doctrine that prevents an accused person from being tried again on the same (or similar) charges following a legitimate acquittal or conviction."},
-                {"Law", "What is a tort?", "A tort is an act or omission that gives rise to injury or harm to another and amounts to a civil wrong for which courts impose liability."},
-                {"Biology", "What is photosynthesis?", "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods from carbon dioxide and water."},
-                {"Biology", "What is an ecosystem?", "An ecosystem is a community of living organisms in conjunction with the nonliving components of their environment, interacting as a system."},
-                {"Business", "What is market segmentation?", "Market segmentation is the process of dividing a market of potential customers into groups, or segments, based on different characteristics."},
-                {"Business", "What is a balance sheet?", "A balance sheet is a financial statement that reports a company's assets, liabilities, and shareholders' equity at a specific point in time."}
-        };
-
-
-        // Putting flashcard data into sqlite
-        // Gets the data repository in write mode
-        db.beginTransaction();
-        try {
-            for (Object[] flashcard : flashcards) {
-                ContentValues values = new ContentValues();
-                values.put("category", (String) flashcard[0]);
-                values.put("question", (String) flashcard[1]);
-                values.put("answer", (String) flashcard[2]);
-                db.insert("flashcards", null, values);
-            }
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
-        }
-
+    private void insertFlashcard(SQLiteDatabase db, String category, String question, String answer) {
+        ContentValues values = new ContentValues();
+        values.put(FlashcardTable.COLUMN_CATEGORY, category);
+        values.put(FlashcardTable.COLUMN_QUESTION, question);
+        values.put(FlashcardTable.COLUMN_ANSWER, answer);
+        db.insert(FlashcardTable.TABLE_NAME, null, values);
     }
+
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // This method is called when the database needs to be upgraded
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
+    }
+    public ProjectDataBaseHelper open() throws SQLException {
+        db = this.getWritableDatabase();
+        return this;
     }
 
-    /**
-     * Crud operations
-     *  Read, implement methods to query flashcards(category)
-     *  Create an arraylist of categories ... like computer science first
-     *
-     *  method will query SQLite database to retrieve all unique categories
-     *  from the flashcards table and return them in an ArrayList<String>.
-     */
-    @SuppressLint("Range")
-    public ArrayList<String> getCategories(){
-        //Create arraylist categories
-        ArrayList<String> categories = new ArrayList<>();
-        String selectQuery = "SELECT DISTINCT CATEGORY FROM flashcards";
-        // Open the sql db with this -> getReadableDatabase()
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()){
-            do{
-                //Extracting category and adding to the list
-                categories.add(cursor.getString(cursor.getColumnIndex("category")));
-                // Print if the arraylist has been populated with logcat
-                // To log you need to add a TAG and MSG
-                Log.d("DatabaseDebug", "Category added:" + categories.size());
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
+    public void close() {
         db.close();
-        // Print total number of categories fetched
-        Log.d("DataDebug","Total number of categories:" + categories.size());
-        return categories;
+    }
+    // Inner class that defines the table contents
+    public static class FlashcardTable implements BaseColumns {
+        public static final String TABLE_NAME = "flashcards";
+        public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_QUESTION = "question";
+        public static final String COLUMN_ANSWER = "answer";
     }
 
-    @SuppressLint("Range")
-    public ArrayList<Flashcard> getFlashcardByCategory(String category){
+    public ArrayList<Flashcard> getFlashcardByCategory(String category) {
         ArrayList<Flashcard> flashcards = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-    String[] projection = {
-            "id",  // Assuming you have an 'id' column
-            "category",
-            "question",
-            "answer"
-    };
-        String selection = "category = ?";
+        String[] projection = {
+                FlashcardTable.COLUMN_CATEGORY,
+                FlashcardTable.COLUMN_QUESTION,
+                FlashcardTable.COLUMN_ANSWER
+        };
+
+        String selection = FlashcardTable.COLUMN_CATEGORY + " = ?";
         String[] selectionArgs = { category };
 
-        Cursor cursor = db.query(
-                "flashcards",   // The table to query
-                projection,     // The columns to return
-                selection,      // The columns for the WHERE clause
-                selectionArgs,  // The values for the WHERE clause
-                null,           // Don't group the rows
-                null,           // Don't filter by row groups
-                null            // The sort order
-        );
-
-        if (cursor.moveToFirst()) {
-            do {
-                Flashcard flashcard = new Flashcard();
-                flashcard.category = cursor.getString(cursor.getColumnIndex("category"));
-                flashcard.question = cursor.getString(cursor.getColumnIndex("question"));
-                flashcard.answer = cursor.getString(cursor.getColumnIndex("answer"));
+        try (
+                Cursor cursor = db.query(
+                        FlashcardTable.TABLE_NAME,   // The table to query
+                        projection,                  // The columns to return
+                        selection,                   // The columns for the WHERE clause
+                        selectionArgs,               // The values for the WHERE clause
+                        null,                        // Don't group the rows
+                        null,                        // Don't filter by row groups
+                        null                         // The sort order
+        )) {
+            while (cursor.moveToNext()) {
+                Flashcard flashcard = new Flashcard(
+                        cursor.getString(cursor.getColumnIndexOrThrow(FlashcardTable.COLUMN_CATEGORY)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(FlashcardTable.COLUMN_QUESTION)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(FlashcardTable.COLUMN_ANSWER))
+                );
                 flashcards.add(flashcard);
-            } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseError", "Error while retrieving flashcards: " + e.getMessage(), e);
+        } finally {
+            db.close();
         }
-        cursor.close();
-        db.close();
 
         return flashcards;
     }
+
 }
+
+

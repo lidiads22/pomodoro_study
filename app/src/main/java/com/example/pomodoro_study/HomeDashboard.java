@@ -2,10 +2,10 @@ package com.example.pomodoro_study;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeDashboard extends AppCompatActivity {
@@ -25,6 +25,20 @@ public class HomeDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homedashboard);
 
+
+        if (flashcardButton1 != null) {
+            flashcardButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(HomeDashboard.this, FlashcardActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Log.e("HomeDashboard", "Flashcard button is null");
+        }
+
+
         // Initialize Hour Buttons
         oneHourButton = findViewById(R.id.button_1HR_ID);
         twoHourButton = findViewById(R.id.button_2hr_id);
@@ -35,10 +49,10 @@ public class HomeDashboard extends AppCompatActivity {
         flashcardButton1 = findViewById(R.id.blueFlashcardID);
         flashcardButton2 = findViewById(R.id.redFlashcardID);
         flashcardButton3 = findViewById(R.id.purpleFlashcardID);
+        flashcardButton4 = findViewById(R.id.greenFlashcardID);
 
         // Set Listeners for Hour Buttons
         setPomodoroButtonListeners();
-
         // Set Listeners for Flashcard Buttons
         setFlashcardButtonListeners();
     }
@@ -61,9 +75,20 @@ public class HomeDashboard extends AppCompatActivity {
             Intent intent = new Intent(HomeDashboard.this, FlashcardActivity.class);
             startActivity(intent);
         };
-        flashcardButton1.setOnClickListener(flashcardListener);
-        flashcardButton2.setOnClickListener(flashcardListener);
-        flashcardButton3.setOnClickListener(flashcardListener);
-        // If you have a fourth flashcard button, initialize it and set its listener as well
+        flashcardButton1.setOnClickListener(v -> startFlashcardActivity("Computer Science"));
+        flashcardButton2.setOnClickListener(v -> startFlashcardActivity("Biology"));
+        flashcardButton3.setOnClickListener(v -> startFlashcardActivity("Business"));
+        flashcardButton4.setOnClickListener(v -> startFlashcardActivity("Anatomy"));
+
+        if (flashcardButton1 == null) {
+            Log.e("Debug", "flashcardButton1 is null");
+        }
+
+
+    }
+    private void startFlashcardActivity(String category) {
+        Intent intent = new Intent(HomeDashboard.this, FlashcardActivity.class);
+        intent.putExtra("Category", category);
+        startActivity(intent);
     }
 }

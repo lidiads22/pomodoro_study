@@ -20,7 +20,7 @@
             android:name=".SignUpActivity"
             android:exported="false" /> <!-- Set HomeDashboard as the launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeDashboard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +29,13 @@
             </intent-filter>
         </activity> <!-- Pomodoro Activity -->
         <activity
-            android:name=".HomeDashboard"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Pomodoro"
+            android:exported="true" />
+        <activity
+            android:name=".FlashcardActivity"
             android:exported="true" />
     </application>
 

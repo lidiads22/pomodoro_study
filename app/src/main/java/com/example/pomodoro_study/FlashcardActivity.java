@@ -3,13 +3,16 @@ package com.example.pomodoro_study;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import java.util.ArrayList;
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import android.util.Log;
+import java.util.ArrayList;  // This line imports the ArrayList class
+
+
 
 public class FlashcardActivity extends AppCompatActivity {
 
-    // Text views from xml
     private TextView questionTextView;
     private TextView answerTextView;
     private CardView flashcardView;
@@ -27,33 +30,31 @@ public class FlashcardActivity extends AppCompatActivity {
         answerTextView = findViewById(R.id.answerTextView);
         flashcardView = findViewById(R.id.flashcardView);
 
-        dbHelper = new ProjectDataBaseHelper(this, "Flashcards.db", null, 1);
+        dbHelper = new ProjectDataBaseHelper(this);
 
-        loadFlashcardsFromDatabase(); // Load flashcards
+        String category = getIntent().getStringExtra("Category"); // Assuming "Category" was put as an extra
+        loadFlashcardsFromDatabase(category); // Load flashcards based on the category
 
-        // Set up initial flashcard if available
-        if(!flashcards.isEmpty()){
-            currentFlashcard = flashcards.get(0); // first flashcard
+        if(!flashcards.isEmpty()) {
             displayCurrentFlashcard();
         }
 
-        flashcardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleAnswerVisibility();
-            }
-        });
+        flashcardView.setOnClickListener(v -> toggleAnswerVisibility());
     }
 
-    private void loadFlashcardsFromDatabase() {
-        flashcards = dbHelper.getFlashcardByCategory(""); // Load all flashcards, adjust if filtering by category
+    private void loadFlashcardsFromDatabase(String category) {
+        flashcards = dbHelper.getFlashcardByCategory(category); // Load all flashcards for a specific category
+        Log.e("FlashcardDebug", "Number of flashcards loaded: " + flashcards.size());
     }
 
     private void displayCurrentFlashcard() {
-        if (currentFlashcard != null) {
+        if (flashcards != null && !flashcards.isEmpty()) {
+            currentFlashcard = flashcards.get(0);
             questionTextView.setText(currentFlashcard.question);
             answerTextView.setText(currentFlashcard.answer);
-            answerTextView.setVisibility(View.GONE); // Hide the answer initially
+            answerTextView.setVisibility(View.GONE); // Initially hide the answer
+        } else {
+            Log.d("FlashcardDebug", "No flashcards found or list is empty.");
         }
     }
 
@@ -67,3 +68,4 @@ public class FlashcardActivity extends AppCompatActivity {
         }
     }
 }
+
