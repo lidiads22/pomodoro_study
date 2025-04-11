@@ -76,8 +76,8 @@ public class HomeDashboard extends AppCompatActivity {
             startActivity(intent);
         };
         flashcardButton1.setOnClickListener(v -> startFlashcardActivity("Computer Science"));
-        flashcardButton2.setOnClickListener(v -> startFlashcardActivity("Biology"));
-        flashcardButton3.setOnClickListener(v -> startFlashcardActivity("Business"));
+        flashcardButton3.setOnClickListener(v -> startFlashcardActivity("Biology"));
+        flashcardButton2.setOnClickListener(v -> startFlashcardActivity("Business"));
         flashcardButton4.setOnClickListener(v -> startFlashcardActivity("Anatomy"));
 
         if (flashcardButton1 == null) {

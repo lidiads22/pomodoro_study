@@ -1,25 +1,31 @@
 package com.example.pomodoro_study;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import android.util.Log;
-import java.util.ArrayList;  // This line imports the ArrayList class
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.ArrayList;
 
 
 public class FlashcardActivity extends AppCompatActivity {
 
+    // Buttons
+    FloatingActionButton close_btn, left_btn, right_btn;
+
+
+    //Views and text for flashcard
     private TextView questionTextView;
     private TextView answerTextView;
-    private CardView flashcardView;
+    private CardView flashCardView;
     private ProjectDataBaseHelper dbHelper;
     private boolean isAnswerShown = false;
     private ProjectDataBaseHelper.Flashcard currentFlashcard;
-    private ArrayList<ProjectDataBaseHelper.Flashcard> flashcards; // Declare the flashcards list
+    private ArrayList<ProjectDataBaseHelper.Flashcard> flashcards;
+    private int currentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,10 @@ public class FlashcardActivity extends AppCompatActivity {
 
         questionTextView = findViewById(R.id.questionTextView);
         answerTextView = findViewById(R.id.answerTextView);
-        flashcardView = findViewById(R.id.flashcardView);
+        flashCardView = findViewById(R.id.flashcardView);
+        close_btn = findViewById(R.id.closeButton);
+        right_btn = findViewById(R.id.rightSwipeButton);
+        left_btn = findViewById(R.id.leftSwipeButton);
 
         dbHelper = new ProjectDataBaseHelper(this);
 
@@ -39,23 +48,58 @@ public class FlashcardActivity extends AppCompatActivity {
             displayCurrentFlashcard();
         }
 
-        flashcardView.setOnClickListener(v -> toggleAnswerVisibility());
+        flashCardView.setOnClickListener(v -> toggleAnswerVisibility());
+
+
+        // Actions for floating buttons
+        close_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),HomeDashboard.class);
+                startActivity(intent);
+            }
+        });
+        left_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (flashcards != null && !flashcards.isEmpty()) {
+                    // Move to previous and wrap around if needed
+                    currentIndex = (currentIndex - 1 + flashcards.size()) % flashcards.size();
+                    currentFlashcard = flashcards.get(currentIndex);
+                    displayCurrentFlashcard();
+                }
+            }
+        });
+
+        // Right button: shows the next flashcard
+        right_btn.setOnClickListener(v -> {
+            if (flashcards != null && !flashcards.isEmpty()) {
+                // Update index and wrap around
+                currentIndex = (currentIndex + 1) % flashcards.size();
+                currentFlashcard = flashcards.get(currentIndex);
+                displayCurrentFlashcard(); // This updates the TextViews
+            }
+        });
+
     }
 
     private void loadFlashcardsFromDatabase(String category) {
         flashcards = dbHelper.getFlashcardByCategory(category); // Load all flashcards for a specific category
+        currentIndex = 0;
         Log.e("FlashcardDebug", "Number of flashcards loaded: " + flashcards.size());
     }
 
     private void displayCurrentFlashcard() {
         if (flashcards != null && !flashcards.isEmpty()) {
-            currentFlashcard = flashcards.get(0);
+         //   currentFlashcard = flashcards.get(0);
+            currentFlashcard = flashcards.get(currentIndex);
             questionTextView.setText(currentFlashcard.question);
             answerTextView.setText(currentFlashcard.answer);
             answerTextView.setVisibility(View.GONE); // Initially hide the answer
         } else {
             Log.d("FlashcardDebug", "No flashcards found or list is empty.");
         }
+
     }
 
     private void toggleAnswerVisibility() {
@@ -66,6 +110,7 @@ public class FlashcardActivity extends AppCompatActivity {
             answerTextView.setVisibility(View.VISIBLE);
             isAnswerShown = true;
         }
+
     }
 }
 

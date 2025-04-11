@@ -26,7 +26,7 @@ public class ProjectDataBaseHelper extends SQLiteOpenHelper {
         }
     }
     private static final String DATABASE_NAME = "Flashcards.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // This version number must change if your changing you db
 
     private SQLiteDatabase db;
 
@@ -52,10 +52,30 @@ public class ProjectDataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
         // Insert initial data
-        insertFlashcard(db, "Computer Science", "What is the boiling point of water?", "100°C");
-        insertFlashcard(db, "Biology", "What is the formula for the area of a circle?", "πr²");
-        insertFlashcard(db, "Business", "What is the boiling point of water?", "100°C");
-        insertFlashcard(db, "Anatomy", "What is the formula for the area of a circle?", "πr²");
+        // --- Computer Science ---
+        insertFlashcard(db, "Computer Science", "What does HTML stand for?", "HyperText Markup Language");
+        insertFlashcard(db, "Computer Science", "What is a loop in programming?", "A control structure that repeats a block of code.");
+        insertFlashcard(db, "Computer Science", "What is an algorithm?", "A step-by-step procedure for solving a problem.");
+        insertFlashcard(db, "Computer Science", "What is inheritance in OOP?", "A mechanism where a new class uses properties of an existing class.");
+
+        // --- Biology ---
+        insertFlashcard(db, "Biology", "What is photosynthesis?", "The process by which green plants make their own food using sunlight.");
+        insertFlashcard(db, "Biology", "What is the basic unit of life?", "The cell.");
+        insertFlashcard(db, "Biology", "What is DNA?", "A molecule that carries genetic instructions.");
+        insertFlashcard(db, "Biology", "What is an ecosystem?", "A community of organisms interacting with their environment.");
+
+        // --- Business ---
+        insertFlashcard(db, "Business", "What is revenue?", "The income generated from normal business operations.");
+        insertFlashcard(db, "Business", "What is a balance sheet?", "A financial statement showing assets, liabilities, and equity.");
+        insertFlashcard(db, "Business", "What is a SWOT analysis?", "A framework for identifying Strengths, Weaknesses, Opportunities, and Threats.");
+        insertFlashcard(db, "Business", "What is market segmentation?", "Dividing a market into distinct groups of buyers.");
+
+        // --- Anatomy ---
+        insertFlashcard(db, "Anatomy", "What is the largest organ in the human body?", "The skin.");
+        insertFlashcard(db, "Anatomy", "What does the heart do?", "It pumps blood throughout the body.");
+        insertFlashcard(db, "Anatomy", "What are the bones in your spine called?", "Vertebrae.");
+        insertFlashcard(db, "Anatomy", "How many chambers does the human heart have?", "Four.");
+
     }
 
     private void insertFlashcard(SQLiteDatabase db, String category, String question, String answer) {
