@@ -3,6 +3,7 @@ package com.example.pomodoro_study;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import java.util.Timer;
 
 public class Pomodoro extends AppCompatActivity {
     Button breakButton, focusButton, resetButton;
-    FloatingActionButton startButton, pauseButton;
+    FloatingActionButton startButton, pauseButton,backButton;
     Timer timer;
     TextView textView;
 
@@ -23,18 +24,6 @@ public class Pomodoro extends AppCompatActivity {
     Boolean value = false;  // Initialized as false
     int num = 25 * 60; // Initialize for 25 minutes
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_pomodoro);
-//
-//        startButton = findViewById(R.id.startButtonID);
-//        pauseButton = findViewById(R.id.pauseButtonID);
-//       // resetButton = findViewById(R.id.reset_buttonID);
-//        breakButton = findViewById(R.id.break_buttonID);
-//        focusButton = findViewById(R.id.focus_buttonID);
-//        textView = findViewById(R.id.timerID);
 
 
     @Override
@@ -44,6 +33,12 @@ public class Pomodoro extends AppCompatActivity {
 
         timerTextView = findViewById(R.id.timerID); // Ensure this ID matches your TextView in activity_pomodoro.xml
 
+        startButton = findViewById(R.id.startButtonID);
+        pauseButton = findViewById(R.id.pauseButtonID);
+        //resetButton = findViewById(R.id.reset_buttonID);breakButton = findViewById(R.id.break_buttonID);
+        focusButton = findViewById(R.id.focus_buttonID);
+        backButton = findViewById(R.id.floatingActionButton2);
+
         // Retrieve the duration passed from HomeDashboard
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("TIME_DURATION")) {
@@ -51,6 +46,15 @@ public class Pomodoro extends AppCompatActivity {
             durationInSeconds = durationMinutes * 60; // Convert minutes to seconds
             startTimer(durationInSeconds * 1000); // Convert seconds to milliseconds for the timer
         }
+
+        // Actions for floating buttons
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),HomeDashboard.class);
+                startActivity(intent);
+            }
+        });
     }
 
         private void startTimer(long durationMs) {
