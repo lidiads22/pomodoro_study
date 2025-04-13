@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,7 @@ public class HomeDashboard extends AppCompatActivity {
     ImageView flashcardButton2;
     ImageView flashcardButton3;
     ImageView flashcardButton4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,22 @@ public class HomeDashboard extends AppCompatActivity {
         setPomodoroButtonListeners();
         // Set Listeners for Flashcard Buttons
         setFlashcardButtonListeners();
-    }
 
+// NAV BAR
+        ImageButton homeBtn = findViewById(R.id.nav_home);
+        ImageButton taskBtn = findViewById(R.id.nav_tasks);
+        //mageButton logoutBtn = findViewById(R.id.nav_logout);
+
+        homeBtn.setOnClickListener(v -> {
+            startActivity(new Intent(HomeDashboard.this, HomeDashboard.class));
+            finish();
+        });
+
+        taskBtn.setOnClickListener(v -> {
+            startActivity(new Intent(HomeDashboard.this, todoList.class));
+            finish();
+        });
+    }
     private void setPomodoroButtonListeners() {
         oneHourButton.setOnClickListener(v -> startPomodoroActivity(60));
         twoHourButton.setOnClickListener(v -> startPomodoroActivity(120));

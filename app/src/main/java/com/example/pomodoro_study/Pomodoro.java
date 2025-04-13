@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Locale;
 import java.util.Timer;
@@ -25,7 +27,6 @@ public class Pomodoro extends AppCompatActivity {
     int num = 25 * 60; // Initialize for 25 minutes
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class Pomodoro extends AppCompatActivity {
         pauseButton = findViewById(R.id.pauseButtonID);
         //resetButton = findViewById(R.id.reset_buttonID);breakButton = findViewById(R.id.break_buttonID);
         focusButton = findViewById(R.id.focus_buttonID);
-        backButton = findViewById(R.id.floatingActionButton2);
+        backButton = findViewById(R.id.backButtonID);
 
         // Retrieve the duration passed from HomeDashboard
         Intent intent = getIntent();

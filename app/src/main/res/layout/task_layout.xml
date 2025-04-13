@@ -5,10 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/task_background">
 
-    <!-- Header Section -->
-
     <!-- White Card for Input Fields -->
-
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="328dp"
@@ -157,25 +154,13 @@
         <!-- Create Task Button -->
         <Button
             android:id="@+id/btn_create_task"
-            android:layout_width="449dp"
-            android:layout_height="74dp"
+            android:layout_width="445dp"
+            android:layout_height="62dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/purple_500"
             android:text="@string/createButton_text"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-
     </LinearLayout>
-
-    <!-- Bottom Navigation Bar -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        app:menu="@menu/bottom_nav_menu" />
-
-
 </RelativeLayout>

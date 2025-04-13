@@ -11,45 +11,75 @@
         android:id="@+id/background_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:backgroundTint="@color/purple_500"
         android:contentDescription="@string/login_input"
         android:scaleType="fitXY"
         android:src="@drawable/empty_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/focus_buttonID"
-        android:layout_width="187dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="232dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backButtonID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@string/focus_text"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/break_buttonID"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:backgroundTint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044"
+        app:srcCompat="@drawable/leftswipe"
+        app:tint="@android:color/white"
+        tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/break_buttonID"
-        android:layout_width="188dp"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/focus_buttonID"
+        android:layout_width="175dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/break_text"
-        android:textColor="@color/white"
+        android:text="🎯 Focus"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/darkGrey"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/focus_buttonID"
-        app:layout_constraintTop_toTopOf="@id/focus_buttonID" />
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/break_buttonID"
+        android:layout_width="176dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="228dp"
+        android:text="☕ Break"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/darkGrey"
+        app:cornerRadius="12dp"
+        app:elevation="8dp"
+        app:iconPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/focus_buttonID"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timerID"
         android:layout_width="385dp"
         android:layout_height="160dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/timer_background"
         android:fontFamily="monospace"
         android:gravity="center"
@@ -62,69 +92,93 @@
         android:textColor="@color/white"
         android:textSize="68sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/focus_buttonID" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startButtonID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="164dp"
+        android:backgroundTint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/pauseButtonID"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/play_circle"
+        app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pauseButtonID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="164dp"
+        android:backgroundTint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startButtonID"
         app:srcCompat="@drawable/pause_circle"
+        app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:menu="@menu/bottom_nav_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="341dp"
-        android:layout_height="161dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="426dp"
+        android:layout_height="199dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/tasks"
+        app:layout_constraintBottom_toBottomOf="@+id/background_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635"
+        app:layout_constraintVertical_bias="0.644"
         app:srcCompat="@drawable/undraw_graduation_u7uc" />
+
+    <LinearLayout
+        android:id="@+id/customNavBar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/home_new"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Home" />
+
+        <ImageButton
+            android:id="@+id/nav_tasks"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/task"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Tasks" />
+
+        <ImageButton
+            android:id="@+id/nav_settings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/logout"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="logout" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

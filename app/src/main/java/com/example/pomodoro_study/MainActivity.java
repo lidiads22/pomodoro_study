@@ -7,9 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.fragment.app.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private Button loginButton, signupButton;
     private TextView forgotPasswordTextView;
+    BottomNavigationView bottomNavigationItemView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Firebase authentication
         mAuth = FirebaseAuth.getInstance();
+
 
         // Check if the user is already logged in
         FirebaseUser user = mAuth.getCurrentUser();
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             // User is not logged in, show login UI
             showLoginUI();
         }
+
     }
 
     // Method to show login UI elements
@@ -100,4 +105,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();  // Close the login screen so the user can't navigate back
     }
+
+
 }

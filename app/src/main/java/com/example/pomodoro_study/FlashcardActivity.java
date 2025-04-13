@@ -3,6 +3,7 @@ package com.example.pomodoro_study;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -38,6 +39,7 @@ public class FlashcardActivity extends AppCompatActivity {
         close_btn = findViewById(R.id.closeButton);
         right_btn = findViewById(R.id.rightSwipeButton);
         left_btn = findViewById(R.id.leftSwipeButton);
+
 
         dbHelper = new ProjectDataBaseHelper(this);
 
