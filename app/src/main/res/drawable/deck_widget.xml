@@ -1,0 +1,12 @@
+<!-- res/drawable/deck_anatomy.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:angle="135"
+        android:startColor="#C9D6FF"
+        android:endColor="#E2E2E2"
+        android:type="linear" />
+
+    <corners android:radius="20dp" />
+</shape>

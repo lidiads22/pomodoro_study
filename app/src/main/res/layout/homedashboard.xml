@@ -39,11 +39,11 @@
 
     <Button
         android:id="@+id/button_1HR_ID"
-        android:layout_width="160dp"
-        android:layout_height="71dp"
-        android:backgroundTint="@color/purple_500"
+        android:layout_width="190dp"
+        android:layout_height="69dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/one_hr_Text"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -51,13 +51,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ready_textID" />
 
+
     <Button
         android:id="@+id/button_3hr_id"
-        android:layout_width="160dp"
-        android:layout_height="71dp"
-        android:backgroundTint="@color/purple_500"
+        android:layout_width="188dp"
+        android:layout_height="72dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/three_hr_Text"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -67,30 +68,30 @@
 
     <Button
         android:id="@+id/button_4hr_id"
-        android:layout_width="160dp"
-        android:layout_height="71dp"
-        android:backgroundTint="@color/purple_500"
+        android:layout_width="191dp"
+        android:layout_height="76dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/button_3hr_id"
-        app:layout_constraintTop_toTopOf="@id/button_3hr_id"
+        android:backgroundTint="@color/teal_200"
         android:text="@string/four_hr_Text"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@id/button_3hr_id"
+        app:layout_constraintTop_toTopOf="@id/button_3hr_id" />
 
     <!-- 2 Hour Button positioned to the right of the 1 Hour Button -->
     <Button
         android:id="@+id/button_2hr_id"
-        android:layout_width="160dp"
-        android:layout_height="71dp"
-        android:backgroundTint="@color/purple_500"
+        android:layout_width="189dp"
+        android:layout_height="72dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/button_1HR_ID"
-        app:layout_constraintTop_toTopOf="@id/button_1HR_ID"
+        android:backgroundTint="@color/purple_500"
         android:text="@string/two_hr_Text"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@id/button_1HR_ID"
+        app:layout_constraintTop_toTopOf="@id/button_1HR_ID" />
 
 
 
@@ -205,6 +206,8 @@
             android:text="@string/an_FC_text"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
+
     </FrameLayout>
     <LinearLayout
         android:id="@+id/customNavBar"

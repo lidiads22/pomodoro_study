@@ -5,22 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/night_bg"
     tools:context=".Pomodoro">
 
-    <ImageView
-        android:id="@+id/background_1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/purple_500"
-        android:contentDescription="@string/login_input"
-        android:scaleType="fitXY"
-        android:src="@drawable/empty_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backButtonID"
@@ -44,11 +31,11 @@
         android:id="@+id/focus_buttonID"
         android:layout_width="175dp"
         android:layout_height="56dp"
-        android:text="🎯 Focus"
-        android:textColor="@android:color/white"
+        android:text=" Focus"
+        android:textColor="@android:color/black"
         android:textSize="16sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/darkGrey"
+
+        app:backgroundTint="@color/teal_700"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +49,10 @@
         android:layout_width="176dp"
         android:layout_height="58dp"
         android:layout_marginTop="228dp"
-        android:text="☕ Break"
-        android:textColor="@android:color/white"
+        android:text=" Break"
+        android:textColor="@android:color/black"
         android:textSize="16sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/darkGrey"
+        app:backgroundTint="@color/teal_700"
         app:cornerRadius="12dp"
         app:elevation="8dp"
         app:iconPadding="8dp"
@@ -75,6 +61,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/focus_buttonID"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/timerID"
@@ -94,11 +81,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
-
+        app:layout_constraintVertical_bias="0.444" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startButtonID"
@@ -134,10 +120,11 @@
         android:layout_height="199dp"
         android:layout_marginEnd="4dp"
         android:contentDescription="@string/tasks"
-        app:layout_constraintBottom_toBottomOf="@+id/background_1"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644"
+        app:layout_constraintVertical_bias="0.679"
         app:srcCompat="@drawable/undraw_graduation_u7uc" />
 
     <LinearLayout
