@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, HomeDashboard.class);
         startActivity(intent);
         finish();  // Close the login screen so the user can't navigate back
-    }
+    }//nav_logout
 
 
 }

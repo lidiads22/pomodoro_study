@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeDashboard extends AppCompatActivity {
     // Hour Buttons
@@ -61,6 +65,7 @@ public class HomeDashboard extends AppCompatActivity {
         // NAV BAR
         ImageButton homeBtn = findViewById(R.id.nav_home);
         ImageButton taskBtn = findViewById(R.id.nav_tasks);
+        ImageButton logoutBtn = findViewById(R.id.nav_logout);
         //mageButton logoutBtn = findViewById(R.id.nav_logout);
 
         homeBtn.setOnClickListener(v -> {
@@ -72,6 +77,15 @@ public class HomeDashboard extends AppCompatActivity {
             startActivity(new Intent(HomeDashboard.this, todoList.class));
             finish();
         });
+        logoutBtn.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(HomeDashboard.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(HomeDashboard.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // optional: clears activity stack
+            startActivity(intent);
+            finish();
+        });
+
     }
     private void setPomodoroButtonListeners() {
         oneHourButton.setOnClickListener(v -> startPomodoroActivity(60));
