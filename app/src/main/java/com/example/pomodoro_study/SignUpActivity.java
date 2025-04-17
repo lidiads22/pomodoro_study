@@ -1,16 +1,24 @@
 package com.example.pomodoro_study;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -18,24 +26,35 @@ public class SignUpActivity extends AppCompatActivity {
     CheckBox termsCheckbox;
     Button signUpButton;
     TextView signInLink;
+    private FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_layout); // change this if your layout file name differs
+        setContentView(R.layout.signup_layout);
 
-        // Link Java code with XML elements
+        mAuth = FirebaseAuth.getInstance();
+
         nameInput = findViewById(R.id.nameInput);
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         termsCheckbox = findViewById(R.id.termsCheckbox);
         signUpButton = findViewById(R.id.signUpButton);
-        TextView signInLink = findViewById(R.id.signInLink);
+        signInLink = findViewById(R.id.signInLink);
 
-
-        // Sign Up button logic
-        signUpButton.setOnClickListener(v -> {
+        signUpButton.setOnClickListener(view -> {
             String name = nameInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString();
@@ -57,13 +76,21 @@ public class SignUpActivity extends AppCompatActivity {
                 return;
             }
 
-            // If everything is okay, go to MainDashboard
-            Intent intent = new Intent(SignUpActivity.this, HomeDashboard.class);
-            startActivity(intent);
-            finish();
+            // Create user
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "Account Registered!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUpActivity.this, HomeDashboard.class));
+                            finish();
+                        } else {
+                            Exception e = task.getException();
+                            Log.e("SignUpError", "Registration failed", e);
+                            Toast.makeText(SignUpActivity.this, "Error: " + (e != null ? e.getMessage() : "Unknown error"), Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
 
-        // Sign In link logic
         signInLink.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
             startActivity(intent);

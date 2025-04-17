@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/night_bg"
+    android:background="@drawable/gradient_bg"
     tools:context=".Pomodoro">
 
 
@@ -31,7 +31,7 @@
         android:id="@+id/focus_buttonID"
         android:layout_width="175dp"
         android:layout_height="56dp"
-        android:text=" Focus"
+        android:text="@string/resetText"
         android:textColor="@android:color/black"
         android:textSize="16sp"
 
