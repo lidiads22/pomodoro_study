@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Locale;
 import java.util.Timer;
@@ -58,17 +56,60 @@ public class Pomodoro extends AppCompatActivity {
         });
     }
 
-        private void startTimer(long durationMs) {
-            countDownTimer = new CountDownTimer(durationMs, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    timerTextView.setText(formatTime(millisUntilFinished));
-                }
+    // Start Break
+    private int pomodoroCount = 0;
+    private void startBreak(int breakMinutes) {
+        new CountDownTimer(breakMinutes * 60 * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText(formatTime(millisUntilFinished));
+            }
 
-                public void onFinish() {
-                    timerTextView.setText("00:00");
+            public void onFinish() {
+                pomodoroCount++;
+                if (pomodoroCount % 2 == 1) {
+                    // Start 5 min break after each work session
+                    startBreak(5);
+                } else if (pomodoroCount == 8) {
+                    // After 4 work sessions and 4 breaks (8 total), give a long break
+                    startBreak(15);
+                    pomodoroCount = 0; // Reset cycle
+                } else {
+                    // Start next 25 min work session
+                    startTimer(25 * 60 * 1000);
                 }
-            }.start();
-        }
+                timerTextView.setText("00:00");
+            }
+        }.start();
+    }
+
+    // If it was a 25-min work session: ➔ start a 5-min break next.
+    //
+    //If it was a 5-min break: ➔ start a new 25-min work session.
+    //
+    //After 4 work sessions: ➔ take a longer 15-min break.
+    private void startTimer(long durationMs) {
+        countDownTimer = new CountDownTimer(durationMs, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Update UI with remaining time
+                timerTextView.setText(formatTime(millisUntilFinished));
+            }
+
+            public void onFinish() {
+                timerTextView.setText("00:00");
+
+                // ➡️ After work session finishes
+                pomodoroCount++;
+
+                if (pomodoroCount % 4 == 0) {
+                    // After every 4 work sessions → long break
+                    startBreak(15);
+                } else {
+                    // Otherwise → short break
+                    startBreak(5);
+                }
+            }
+        }.start();
+    }
 
     private String formatTime(long millis) {
         long hours = (millis / 1000) / 3600;  // Convert milliseconds to hours
