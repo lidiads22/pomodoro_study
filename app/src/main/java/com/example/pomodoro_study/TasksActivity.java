@@ -15,12 +15,6 @@ import java.util.Map;
 
 //task_layout.xml
 public class TasksActivity extends AppCompatActivity {
-
-    public static final String EXTRA_TASK_NAME     = "com.example.pomodoro_study.TASK_NAME";
-    public static final String EXTRA_TASK_DATE     = "com.example.pomodoro_study.TASK_DATE";
-    public static final String EXTRA_TASK_START    = "com.example.pomodoro_study.TASK_START";
-    public static final String EXTRA_TASK_END      = "com.example.pomodoro_study.TASK_END";
-
     private EditText etTaskName;
     private EditText etTaskDate;
     private EditText etStartTime;
