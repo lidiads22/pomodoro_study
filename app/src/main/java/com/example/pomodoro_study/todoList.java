@@ -1,33 +1,31 @@
-// todoList.java
 package com.example.pomodoro_study;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.method.TextKeyListener;
-import android.text.method.TextKeyListener.Capitalize;
-import android.text.method.LinkMovementMethod;
-import android.text.style.StrikethroughSpan;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+
+// Calendar View
+// activity_todo_list.xml
 public class todoList extends AppCompatActivity {
 
     private CalendarView calendarView;
     private LinearLayout taskListContainer;
     private FloatingActionButton addTaskButton;
     private long selectedDateMillis;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -62,7 +62,7 @@ public class HomeDashboard extends AppCompatActivity {
         // Set Listeners for Flashcard Buttons
         setFlashcardButtonListeners();
 
-        // NAV BAR
+        // NAV BAR m
         ImageButton homeBtn = findViewById(R.id.nav_home);
         ImageButton taskBtn = findViewById(R.id.nav_tasks);
         ImageButton logoutBtn = findViewById(R.id.nav_logout);
