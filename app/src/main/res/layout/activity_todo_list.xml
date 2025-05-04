@@ -9,16 +9,21 @@
     tools:context=".todoList">
 
     <!-- CalendarView at the top -->
+
+    <!-- Task List Container -->
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="374dp"
         android:layout_height="318dp"
         android:layout_margin="16dp"
+        android:background="@drawable/calendar_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Task List Container -->
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.093" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTaskButton"
@@ -31,23 +36,25 @@
         android:tooltipText="@string/add_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386"
+        app:layout_constraintVertical_bias="0.467"
         app:srcCompat="@drawable/add_circle_icon" />
 
     <LinearLayout
         android:id="@+id/taskListContainer"
-        android:layout_width="387dp"
-        android:layout_height="434dp"
+        android:layout_width="384dp"
+        android:layout_height="373dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/customNavBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendarView"
-        app:layout_constraintVertical_bias="0.82"></LinearLayout>
+        app:layout_constraintVertical_bias="0.82">
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/customNavBar"
