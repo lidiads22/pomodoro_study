@@ -1,9 +1,11 @@
 package com.example.pomodoro_study;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -64,16 +67,11 @@ public class todoList extends AppCompatActivity {
 
         // NAV BAR
         ImageButton homeBtn = findViewById(R.id.nav_home);
-        ImageButton taskBtn = findViewById(R.id.nav_tasks);
+        //ImageButton taskBtn = findViewById(R.id.nav_tasks);
         ImageButton logoutBtn = findViewById(R.id.nav_logout);
 
         homeBtn.setOnClickListener(v -> {
             startActivity(new Intent(todoList.this, HomeDashboard.class));
-            finish();
-        });
-
-        taskBtn.setOnClickListener(v -> {
-            startActivity(new Intent(todoList.this, todoList.class));
             finish();
         });
 
@@ -91,14 +89,28 @@ public class todoList extends AppCompatActivity {
     }
 
     private void loadTasksForSelectedDate() {
-        taskListContainer.removeAllViews(); // Clear current list
+        taskListContainer.removeAllViews();
 
-        String currentUser = auth.getCurrentUser().getUid();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "User not signed in", Toast.LENGTH_SHORT).show();
+            // Optional: redirect to login screen
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+        String uid = currentUser.getUid();
+       // String currentUser = auth.getCurrentUser().getUid();
         String selectedDateStr = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 .format(selectedDateMillis);
 
-        CollectionReference tasksRef = db.collection("tasks");
-        tasksRef.whereEqualTo("userId", currentUser)
+
+        CollectionReference tasksRef = db
+                .collection("users")
+                .document(uid)
+                .collection("tasks");
+
+        tasksRef
                 .whereEqualTo("date", selectedDateStr)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -108,18 +120,56 @@ public class todoList extends AppCompatActivity {
                         taskListContainer.addView(noTasks);
                     } else {
                         for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                            String name = doc.getString("name");
-                            String start = doc.getString("start");
-                            String end = doc.getString("end");
+                            String name = doc.getString("taskName");
+                            String start = doc.getString("startTime");
+                            String end = doc.getString("endTime");
 
-                            TextView taskView = new TextView(todoList.this);
-                            taskView.setText(name + "\n" + start + " - " + end);
-                            taskView.setTextSize(16);
-                            taskView.setPadding(10, 10, 10, 20);
-
-                            taskListContainer.addView(taskView, new ViewGroup.LayoutParams(
+                            // Create task row
+                            LinearLayout taskRow = new LinearLayout(todoList.this);
+                            taskRow.setOrientation(LinearLayout.HORIZONTAL);
+                            taskRow.setPadding(20, 20, 20, 20);
+                            taskRow.setBackgroundResource(R.drawable.task_card_background);
+                            taskRow.setLayoutParams(new LinearLayout.LayoutParams(
                                     ViewGroup.LayoutParams.MATCH_PARENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT));
+                            taskRow.setElevation(8);
+
+                            CheckBox checkBox = new CheckBox(todoList.this);
+                            taskRow.addView(checkBox);
+
+                            LinearLayout textLayout = new LinearLayout(todoList.this);
+                            textLayout.setOrientation(LinearLayout.VERTICAL);
+                            textLayout.setPadding(20, 0, 0, 0);
+                            textLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    1f));
+
+                            TextView taskName = new TextView(todoList.this);
+                            taskName.setText(name);
+                            taskName.setTextSize(18);
+                            taskName.setTextColor(getResources().getColor(android.R.color.black));
+
+                            TextView timeRange = new TextView(todoList.this);
+                            timeRange.setText(start + " - " + end);
+                            timeRange.setTextSize(14);
+                            timeRange.setTextColor(getResources().getColor(android.R.color.darker_gray));
+
+                            textLayout.addView(taskName);
+                            textLayout.addView(timeRange);
+                            taskRow.addView(textLayout);
+
+                            // Checkbox functionality
+                            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                                if (isChecked) {
+                                    taskName.setPaintFlags(taskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                                } else {
+                                    taskName.setPaintFlags(taskName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                                }
+                            });
+
+                            // Add task row to layout
+                            taskListContainer.addView(taskRow);
                         }
                     }
                 })

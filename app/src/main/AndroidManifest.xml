@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="false" /> <!-- Set HomeDashboard as the launcher activity -->
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
