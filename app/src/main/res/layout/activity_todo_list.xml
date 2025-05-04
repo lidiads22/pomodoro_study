@@ -138,6 +138,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.406"
         app:srcCompat="@drawable/add_circle_icon"
+        android:contentDescription="@string/add_task"
         android:tooltipText="@string/add_task"/>
 
 
@@ -165,8 +166,7 @@
             android:layout_weight="1"
             android:src="@drawable/home_new"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Home"
-            tools:ignore="HardcodedText" />
+            android:contentDescription="Home" />
 
         <ImageButton
             android:id="@+id/nav_tasks"
@@ -174,19 +174,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/task"
+            android:backgroundTint="@color/white"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Tasks"
-            tools:ignore="HardcodedText" />
+            android:contentDescription="@string/tasks" />
 
         <ImageButton
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_logout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Logout"
             android:src="@drawable/logout"
-            tools:ignore="HardcodedText" />
+            android:backgroundTint="@color/darkGrey"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/logout" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
