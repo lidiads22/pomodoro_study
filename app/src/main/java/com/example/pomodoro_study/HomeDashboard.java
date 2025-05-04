@@ -47,15 +47,15 @@ public class HomeDashboard extends AppCompatActivity {
 
         // Initialize Hour Buttons
         oneHourButton = findViewById(R.id.button_1HR_ID);
-        twoHourButton = findViewById(R.id.button_2hr_id);
-        threeHourButton = findViewById(R.id.button_3hr_id);
-        fourHourButton = findViewById(R.id.button_4hr_id);
+        twoHourButton = findViewById(R.id.button_2HR_ID);
+        threeHourButton = findViewById(R.id.button_3HR_ID);
+        fourHourButton = findViewById(R.id.button_4HR_ID);
 
         // Initialize Flashcard Buttons
-        flashcardButton1 = findViewById(R.id.blueFlashcardID);
-        flashcardButton2 = findViewById(R.id.redFlashcardID);
-        flashcardButton3 = findViewById(R.id.purpleFlashcardID);
-        flashcardButton4 = findViewById(R.id.greenFlashcardID);
+        flashcardButton1 = findViewById(R.id.compFlashcard);
+        flashcardButton2 = findViewById(R.id.bioFlashcard);
+        flashcardButton3 = findViewById(R.id.busFlashcard);
+        flashcardButton4 = findViewById(R.id.anFlashcard);
 
         // Set Listeners for Hour Buttons
         setPomodoroButtonListeners();

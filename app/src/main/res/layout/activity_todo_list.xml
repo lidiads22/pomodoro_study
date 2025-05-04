@@ -14,16 +14,16 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="374dp"
-        android:layout_height="318dp"
+        android:layout_width="395dp"
+        android:layout_height="323dp"
         android:layout_margin="16dp"
         android:background="@drawable/calendar_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.026" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTaskButton"
@@ -36,10 +36,10 @@
         android:tooltipText="@string/add_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456"
+        app:layout_constraintVertical_bias="0.434"
         app:srcCompat="@drawable/add_circle_icon" />
 
     <LinearLayout
@@ -101,15 +101,15 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/todolistString"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:fontFamily="monospace"
+        android:text="@string/todolistString"
+        android:textColor="@color/white"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.423" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

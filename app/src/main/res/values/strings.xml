@@ -201,4 +201,5 @@
     <string name="resetText">Reset</string>
     <string name="add_task"><![CDATA[<resources>\n    <string name=\"add_task\">Add Task</string>\n</resources>\n]]></string>
     <string name="todolistString">TodoList</string>
+    <string name="_5_cards">5 cards</string>
 </resources>
