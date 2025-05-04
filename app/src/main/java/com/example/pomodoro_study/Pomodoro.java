@@ -21,8 +21,8 @@ public class Pomodoro extends AppCompatActivity {
     TextView timerTextView;
     long durationInSeconds;
     CountDownTimer countDownTimer;
-    Boolean value = false;  // Initialized as false
-    int num = 25 * 60; // Initialize for 25 minutes
+    Boolean value = false;
+    int num = 25 * 60;
 
 
     @Override
