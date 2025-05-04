@@ -15,12 +15,6 @@ import java.util.Map;
 
 //task_layout.xml
 public class TasksActivity extends AppCompatActivity {
-
-    public static final String EXTRA_TASK_NAME = "com.example.pomodoro_study.TASK_NAME";
-    public static final String EXTRA_TASK_DATE = "com.example.pomodoro_study.TASK_DATE";
-    public static final String EXTRA_TASK_START = "com.example.pomodoro_study.TASK_START";
-    public static final String EXTRA_TASK_END = "com.example.pomodoro_study.TASK_END";
-
     private EditText etTaskName;
     private EditText etTaskDate;
     private EditText etStartTime;
@@ -29,30 +23,29 @@ public class TasksActivity extends AppCompatActivity {
     private Button btnCreateTask;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Object task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_layout);
 
-        etTaskName = findViewById(R.id.et_task_name);
-        etTaskDate = findViewById(R.id.et_task_date);
-        etStartTime = findViewById(R.id.et_start_time);
-        etEndTime = findViewById(R.id.et_end_time);
-        closeButton = findViewById(R.id.closeButton);
+        etTaskName    = findViewById(R.id.et_task_name);
+        etTaskDate    = findViewById(R.id.et_task_date);
+        etStartTime   = findViewById(R.id.et_start_time);
+        etEndTime     = findViewById(R.id.et_end_time);
+        closeButton   = findViewById(R.id.closeButton);
         btnCreateTask = findViewById(R.id.btn_create_task);
 
         closeButton.setOnClickListener(v -> finish());
 
         btnCreateTask.setOnClickListener(v -> {
-            String name = etTaskName.getText().toString().trim();
-            String date = etTaskDate.getText().toString().trim();
+            String name  = etTaskName.getText().toString().trim();
+            String date  = etTaskDate.getText().toString().trim();
             String start = etStartTime.getText().toString().trim();
-            String end = etEndTime.getText().toString().trim();
+            String end   = etEndTime.getText().toString().trim();
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user != null) {
+            if(user != null){
                 String uid = user.getUid();
 
                 Map<String, Object> task = new HashMap<>();
@@ -61,13 +54,14 @@ public class TasksActivity extends AppCompatActivity {
                 task.put("startTime", start);
                 task.put("endTime", end);
 
-                db.collection("users")
+                FirebaseFirestore.getInstance()
+                        .collection("users")
                         .document(uid)
                         .collection("tasks")
                         .add(task)
                         .addOnSuccessListener(documentReference -> {
-                            Log.d("Firestore", "Task added with ID: " + documentReference.getId());
-                            Toast.makeText(TasksActivity.this, "Task saved!", Toast.LENGTH_LONG).show();
+                            Log.d("Firestore","Task added with ID: " + documentReference.getId());
+                            Toast.makeText(TasksActivity.this,"Task saved!", Toast.LENGTH_LONG).show();
                             finish();
                         })
                         .addOnFailureListener(e -> {
@@ -76,33 +70,6 @@ public class TasksActivity extends AppCompatActivity {
                         });
             }
         });
-
-        // Add this line to call the read function
-        readUserTasks();
-    }
-
-    // Add this method BELOW onCreate()
-    private void readUserTasks() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String uid = user.getUid(); // Now uid is defined
-
-
-            FirebaseFirestore.getInstance()
-                    .collection("users")
-                    .document(uid)
-                    .collection("tasks")
-                    .add(task)
-                    .addOnSuccessListener(documentReference -> {
-                        Log.d("Firestore", "Task added with ID: " + documentReference.getId());
-                        Toast.makeText(TasksActivity.this, "Task saved!", Toast.LENGTH_LONG).show();
-                        finish();
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("Firestore", "Error saving task", e);
-                        Toast.makeText(TasksActivity.this, "Error saving task", Toast.LENGTH_SHORT).show();
-                    });
-        }
     }
 }
 

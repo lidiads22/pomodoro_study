@@ -2,9 +2,11 @@ package com.example.pomodoro_study;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,81 +29,102 @@ public class todoList extends AppCompatActivity {
     private FloatingActionButton addTaskButton;
     private long selectedDateMillis;
 
-    // Firebase instance
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todo_list);// Set the layout
+        setContentView(R.layout.activity_todo_list);
 
-        // Initialize views
+        // Initialize Firebase
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
         calendarView = findViewById(R.id.calendarView);
         taskListContainer = findViewById(R.id.taskListContainer);
         addTaskButton = findViewById(R.id.addTaskButton);
 
-        // Initialize CalendarView to today's date
         long today = System.currentTimeMillis();
         calendarView.setDate(today, true, true);
         selectedDateMillis = today;
 
-        // When user picks a date, update selectedDateMillis
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view,
-                                            int year, int month, int dayOfMonth) {
-                Calendar cal = Calendar.getInstance();
-                cal.set(year, month, dayOfMonth, 0, 0, 0);
-                selectedDateMillis = cal.getTimeInMillis();
-            }
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            Calendar cal = Calendar.getInstance();
+            cal.set(year, month, dayOfMonth, 0, 0, 0);
+            selectedDateMillis = cal.getTimeInMillis();
+            loadTasksForSelectedDate();
         });
 
-        // When the "Add Task" button is clicked, navigate to TasksActivity to add a task
-        addTaskButton.setOnClickListener(v -> openTaskActivity());
+        addTaskButton.setOnClickListener(v -> {
+            Intent intent = new Intent(todoList.this, TasksActivity.class);
+            startActivity(intent);
+        });
 
-        // NAV BAR setup
+
+        // NAV BAR
         ImageButton homeBtn = findViewById(R.id.nav_home);
         ImageButton taskBtn = findViewById(R.id.nav_tasks);
         ImageButton logoutBtn = findViewById(R.id.nav_logout);
 
-        // Home Button
         homeBtn.setOnClickListener(v -> {
             startActivity(new Intent(todoList.this, HomeDashboard.class));
             finish();
         });
 
-        // Task Button (already in todoList)
         taskBtn.setOnClickListener(v -> {
             startActivity(new Intent(todoList.this, todoList.class));
             finish();
         });
 
-        // Logout Button
         logoutBtn.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(todoList.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(todoList.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clears activity stack
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });
+
+        // Load tasks for today
+        loadTasksForSelectedDate();
     }
 
-    // Open TasksActivity (pass the selected date to it)
-    private void openTaskActivity() {
-        Intent intent = new Intent(todoList.this, TasksActivity.class);
-        intent.putExtra("selectedDateMillis", selectedDateMillis);  // Pass selected date
-        startActivity(intent);
-    }
+    private void loadTasksForSelectedDate() {
+        taskListContainer.removeAllViews(); // Clear current list
 
-    // Format date and time display (for use in displaying dates)
-    private String formatDateTime(long dateMillis, String time) {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, MMM d", Locale.getDefault());
-        String dateStr = sdf.format(dateMillis);
-        if (time != null && !time.isEmpty()) {
-            return dateStr + " • " + time;
-        } else {
-            return dateStr;
-        }
+        String currentUser = auth.getCurrentUser().getUid();
+        String selectedDateStr = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                .format(selectedDateMillis);
+
+        CollectionReference tasksRef = db.collection("tasks");
+        tasksRef.whereEqualTo("userId", currentUser)
+                .whereEqualTo("date", selectedDateStr)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        TextView noTasks = new TextView(todoList.this);
+                        noTasks.setText("No tasks for this date.");
+                        taskListContainer.addView(noTasks);
+                    } else {
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            String name = doc.getString("name");
+                            String start = doc.getString("start");
+                            String end = doc.getString("end");
+
+                            TextView taskView = new TextView(todoList.this);
+                            taskView.setText(name + "\n" + start + " - " + end);
+                            taskView.setTextSize(16);
+                            taskView.setPadding(10, 10, 10, 20);
+
+                            taskListContainer.addView(taskView, new ViewGroup.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT));
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(todoList.this, "Failed to load tasks: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
