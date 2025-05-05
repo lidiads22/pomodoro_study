@@ -8,10 +8,6 @@
     android:background="@drawable/gradient_bg"
     tools:context=".todoList">
 
-    <!-- CalendarView at the top -->
-
-    <!-- Task List Container -->
-
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="395dp"

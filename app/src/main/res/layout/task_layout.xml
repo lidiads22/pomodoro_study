@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradient_bg">
 
-    <!-- White Card for Input Fields -->
-
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="284dp"
@@ -51,8 +49,6 @@
 
         android:padding="20dp">
 
-        <!-- Task Name -->
-        <!-- Task Name Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +57,6 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <!-- Modern Styled EditText -->
         <EditText
             android:id="@+id/et_task_name"
             android:layout_width="match_parent"
@@ -83,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/date_text"
+            android:inputType="date"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

@@ -35,7 +35,7 @@
     <string name="taskNAME_text">Name</string>
     <string name="date_text">Date</string>
     <string name="enterTask_text">Enter Task Name</string>
-    <string name="selectDate_text">Select Date</string>
+    <string name="selectDate_text">YYYY-MM-DD</string>
     <string name="startTime_text">Start to Start</string>
     <string name="endTime_text">End Time</string>
     <string name="selectEnd_text">Select end time</string>
