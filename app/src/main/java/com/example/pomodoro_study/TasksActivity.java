@@ -1,5 +1,7 @@
 package com.example.pomodoro_study;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -61,6 +63,49 @@ public class TasksActivity extends AppCompatActivity {
             );
             datePicker.show();
         });
+
+        etStartTime.setFocusable(false);
+        etStartTime.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+
+            new TimePickerDialog(
+                    TasksActivity.this,
+                    (view, selectedHour, selectedMinute) -> {
+                        // Convert to 12-hour format with AM/PM
+                        Calendar time = Calendar.getInstance();
+                        time.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        time.set(Calendar.MINUTE, selectedMinute);
+                        String formattedTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(time.getTime());
+
+                        etStartTime.setText(formattedTime);
+                    },
+                    hour, minute, false // false = 12-hour format
+            ).show();
+        });
+
+        etEndTime.setFocusable(false);
+        etEndTime.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+
+            new TimePickerDialog(
+                    TasksActivity.this,
+                    (view, selectedHour, selectedMinute) -> {
+                        // Convert to 12-hour format with AM/PM
+                        Calendar time = Calendar.getInstance();
+                        time.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        time.set(Calendar.MINUTE, selectedMinute);
+                        String formattedTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(time.getTime());
+
+                        etEndTime.setText(formattedTime);
+                    },
+                    hour, minute, false // false = 12-hour format
+            ).show();
+        });
+
 
         btnCreateTask.setOnClickListener(v -> {
             String name = etTaskName.getText().toString().trim();
