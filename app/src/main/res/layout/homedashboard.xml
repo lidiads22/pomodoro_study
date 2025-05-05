@@ -427,4 +427,23 @@
         app:layout_constraintVertical_bias="0.827"
         app:srcCompat="@drawable/bill_4__streamline_sharp" />
 
+    <Button
+        android:id="@+id/learnMoreBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:background="@drawable/button_learn_more"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="Learn More!"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
