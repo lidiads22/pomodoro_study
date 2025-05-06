@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pomodoro_study"
         tools:targetApi="31">
-
+        <activity
+            android:name=".learnMore"
+            android:exported="false"
+            android:theme="@style/Theme.Pomodoro_study" />
         <activity
             android:name=".todoList"
             android:exported="false"
