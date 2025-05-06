@@ -19,6 +19,7 @@ public class HomeDashboard extends AppCompatActivity {
     Button twoHourButton;
     Button threeHourButton;
     Button fourHourButton;
+    Button learnMoreButton;
     // Flashcard Buttons
     ImageView flashcardButton1;
     ImageView flashcardButton2;
@@ -56,6 +57,7 @@ public class HomeDashboard extends AppCompatActivity {
         flashcardButton2 = findViewById(R.id.bioFlashcard);
         flashcardButton3 = findViewById(R.id.busFlashcard);
         flashcardButton4 = findViewById(R.id.anFlashcard);
+        learnMoreButton = findViewById(R.id.learnMoreBtn);
 
         // Set Listeners for Hour Buttons
         setPomodoroButtonListeners();
@@ -83,6 +85,11 @@ public class HomeDashboard extends AppCompatActivity {
             Intent intent = new Intent(HomeDashboard.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // optional: clears activity stack
             startActivity(intent);
+            finish();
+        });
+
+        learnMoreButton.setOnClickListener(v -> {
+            startActivity(new Intent(HomeDashboard.this, learnMore.class));
             finish();
         });
 

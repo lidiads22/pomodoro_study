@@ -8,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.navigation.NavController;
@@ -26,14 +28,14 @@ public class learnMore extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_learn_more);
+        ImageView backbutton = findViewById(R.id.backButtonID2);
 
 
 
-        logoutBtn.setOnClickListener(v -> {
+        backbutton.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(HomeDashboard.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(HomeDashboard.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // optional: clears activity stack
+            Intent intent = new Intent(learnMore.this, HomeDashboard.class);
             startActivity(intent);
             finish();
         });
