@@ -42,26 +42,24 @@
         app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/break_buttonID"
-        android:layout_width="176dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="228dp"
-        android:text=" Break"
+        android:id="@+id/focus_buttonID2"
+        android:layout_width="175dp"
+        android:layout_height="56dp"
+        android:text="@string/break_text"
         android:textColor="@android:color/black"
         android:textSize="16sp"
+
         app:backgroundTint="@color/teal_700"
         app:cornerRadius="12dp"
-        app:elevation="8dp"
-        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.637"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/focus_buttonID"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347" />
 
     <TextView
         android:id="@+id/timerID"
@@ -81,10 +79,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startButtonID"
@@ -116,15 +114,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="426dp"
-        android:layout_height="199dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="395dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/tasks"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
+        app:layout_constraintVertical_bias="0.673"
         app:srcCompat="@drawable/undraw_graduation_u7uc" />
 
     <LinearLayout
