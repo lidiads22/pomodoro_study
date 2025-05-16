@@ -1,6 +1,6 @@
 # Pomodoro Study App
 
-This is a mobile app I worked on with my team that uses the Pomodoro technique to help users stay productive.
+This is a mobile app I worked on with Destiny that uses the Pomodoro technique to help users stay productive.
 We added features like a focus timer, task manager with calendar view, and flashcards by category like Bio, CS, Business, etc. 
 It also uses Firebase so each user can sign in and save their own tasks.
 
